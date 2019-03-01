@@ -48,7 +48,14 @@ app.get('/login', auth.authenticate('saml', { failureRedirect: '/', failureFlash
 app.use(auth.protected);
 
 app.get('/', auth.protected, function (req, res){
-	  res.end("Hello " + req.session.passport.user);
+	  res.json({
+      email: req.user.email,
+      firstName: req.user.firstName,
+      lastName: req.user.lastName,
+      login: req.user.login,
+      title: req.user.title,
+      division: req.user.division
+    });
 });
 
 app.get('/hello', auth.protected, function (req, res){
@@ -59,4 +66,4 @@ app.get('*', function(req, res){
   res.redirect('/');
 });
 
-app.listen(process.env.PORT || 3000);
+app.listen(process.env.PORT || 8080);

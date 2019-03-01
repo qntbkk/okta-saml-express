@@ -31,7 +31,7 @@ passport.deserializeUser(function(id, done) {
 
 passport.use('saml', new SamlStrategy(
   {
-    issuer: "http://localhost:3000",
+    issuer: "passport-saml",
   	path: '/login/callback',
     protocol: 'http://',
     entryPoint: config.auth.entryPoint,
